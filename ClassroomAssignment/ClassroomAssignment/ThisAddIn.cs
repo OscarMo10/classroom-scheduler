@@ -11,8 +11,17 @@ namespace ClassroomAssignment
 {
     public partial class ThisAddIn
     {
+
+        private MyUserControl myUserControl;
+        private Microsoft.Office.Tools.CustomTaskPane customTaskPane;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            // Add a custom task pane
+            myUserControl = new MyUserControl();
+            customTaskPane = this.CustomTaskPanes.Add(myUserControl, "My Task Pane");
+            this.customTaskPane.Visible = true;
+
             this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
         }
 
