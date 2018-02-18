@@ -156,6 +156,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Model\ClassroomScheduleVisual.cs" />
     <Compile Include="Model\DepartmentSheet.cs" />
     <Compile Include="MyUserControl.cs">
       <SubType>UserControl</SubType>
