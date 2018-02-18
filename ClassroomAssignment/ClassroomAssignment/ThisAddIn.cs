@@ -29,6 +29,11 @@ namespace ClassroomAssignment
             newFirstRow.Value2 = "This text was added by using code";
         }
 
+        protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            return new Ribbon();
+        }
+
         #region VSTO generated code
 
         /// <summary>
