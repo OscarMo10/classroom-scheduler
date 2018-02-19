@@ -157,6 +157,7 @@
   -->
   <ItemGroup>
     <Compile Include="Model\ClassroomScheduleVisual.cs" />
+    <Compile Include="Model\Course.cs" />
     <Compile Include="Model\DepartmentSheet.cs" />
     <Compile Include="MyUserControl.cs">
       <SubType>UserControl</SubType>
@@ -225,7 +226,7 @@
     <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>82CCDFAB6196F8881D1A93D6EF2A8D660E267243</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
