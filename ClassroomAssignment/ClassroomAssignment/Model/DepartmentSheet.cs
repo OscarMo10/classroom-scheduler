@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Model
 {
-    class DepartmentSheet
+    class DepartmentSpreadSheet
     {
+        public class Headers
+        {
+
+        }
     }
 }

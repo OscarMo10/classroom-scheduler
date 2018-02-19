@@ -9,15 +9,42 @@ namespace ClassroomAssignment.Model
     class Course
     {
 
-        // The Names of these properties match that of the departmental headers
-        private int CourseID { get; set; }
-        private int SIS_ID { get; set; }
-        private String Term { get; set; } 
-        private int TermCode { get; set; }
-        private String DepartmentCode { get; set; }
-        private String SubjectCode { get; set; }
-        private int CatalogNumber { get; set; }
-        private String Course { get; set; }
-        private String 
+        internal int CourseID { get; set; }
+        internal int SIS_ID { get; set; }
+        internal String Term { get; set; } 
+        internal int TermCode { get; set; }
+        internal String DepartmentCode { get; set; }
+        internal String SubjectCode { get; set; }
+        internal int CatalogNumber { get; set; }
+        internal String Course_Label { get; set; }
+        internal int Section_Number { get; set; }
+        internal String Section_Type { get; set; }
+        internal String Topic { get; set; }
+        internal String MeetingPattern { get; set;}
+        internal String Instructor { get; set; }
+        internal String Room { get; set; }
+        internal String Status { get; set; }
+        internal String Session { get; set; }
+        internal String Campus { get; set; }
+        internal String InstructionMethod { get; set; }
+        internal String IntegerPartner { get; set; }
+        internal String ShedulePrint { get; set; }
+        internal String Consent { get; set; }
+        internal int CreditHrsMin { get; set; }
+        internal int CreditHrs { get; set; }
+        internal String GradeMode { get; set; }
+        internal String Attributes { get; set; }
+        internal String RoomAttributes { get; set; }
+        internal int Enrollment { get; set; }
+        internal int MaximumEnrollment { get; set; }
+        internal int PriorEnrollment { get; set; }
+        internal int WaitCap { get; set; }
+        internal int RoomCapRequest { get; set; }
+        internal String CrossListings { get; set; }
+        internal String LinkTo { get; set; }
+        internal String Comments { get; set; }
+        internal String Notes { get; set; }
+
+
     }
 }
