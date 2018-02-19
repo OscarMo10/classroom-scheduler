@@ -43,6 +43,7 @@ namespace ClassroomAssignment
             return new Ribbon();
         }
 
+        
         #region VSTO generated code
 
         /// <summary>

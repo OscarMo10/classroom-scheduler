@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace ClassroomAssignment
 {
@@ -15,6 +17,20 @@ namespace ClassroomAssignment
         public MyUserControl()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            Excel.Worksheet activeWorksheet = Globals.ThisAddIn.Application.ActiveSheet;
+            Excel.Range firstRow = activeWorksheet.get_Range("A1");
+            foreach(DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                firstRow.Value = day.ToString();
+                firstRow = firstRow.Offset[0, 1];
+            }
+            
+
         }
     }
 }
