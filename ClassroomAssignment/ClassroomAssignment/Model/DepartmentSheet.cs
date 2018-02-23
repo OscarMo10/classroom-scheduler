@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Model
 {
-    class DepartmentSpreadSheet
+    public class DepartmentSpreadSheet
     {
         public class Headers
         {
@@ -20,7 +20,7 @@ namespace ClassroomAssignment.Model
             public static string SECTION_NUM = "Section #";
             public static string COURSE_TITLE = "Course Title";
             public static string SECTION_TYPE = "Section Type";
-            public static string TITLE_SLASH_TOPIC = "Title"
+            public static string TITLE_SLASH_TOPIC = "Title";
 
         }
 
@@ -33,7 +33,7 @@ namespace ClassroomAssignment.Model
 
         public class MeetingPatternOptions
         {
-
+            public static string TIME_PATTERN = @"((?<daysOfWeek>(M|T|W|TH|F))+ (?<startTime>\d{1,2}:\d{1,2}(am|pm))-(?<endTime>\d{1,2}:\d{1,2}(am|pm)))";
             public static string DOES_NOT_MEET = "Does Not Meet";
         }
     }
