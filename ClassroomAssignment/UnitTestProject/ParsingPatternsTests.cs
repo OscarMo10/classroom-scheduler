@@ -5,7 +5,7 @@ using ClassroomAssignment.Model;
 namespace UnitTestProject
 {
     [TestClass]
-    public class TestParsingPatterns
+    public class ParsingPatternsTests
     {
         private Match MeetingTimeMatch;
 
