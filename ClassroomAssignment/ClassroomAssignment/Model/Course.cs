@@ -48,6 +48,7 @@ namespace ClassroomAssignment.Model
         // Derived information
         public bool NeedsRoom { get; set; }
         public bool Meets { get; set; }
+        public bool AlreadyAssignedRoom { get; set; }
         public String RoomAssignment { get; set; }
         public List<DayOfWeek> meetingDays { get; set; }
     }

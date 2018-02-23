@@ -156,22 +156,26 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Model\InMemoryRoomRepository.cs" />
     <Compile Include="Model\ClassroomScheduleVisual.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\DepartmentSheet.cs" />
-    <Compile Include="MyUserControl.cs">
+    <Compile Include="Model\ICourseRepository.cs" />
+    <Compile Include="Model\InMemoryCourseRepository.cs" />
+    <Compile Include="Model\IRoomRepository.cs" />
+    <Compile Include="View\MyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MyUserControl.Designer.cs">
+    <Compile Include="View\MyUserControl.Designer.cs">
       <DependentUpon>MyUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="AddinRibbon.resx">
+    <EmbeddedResource Include="View\AddinRibbon.resx">
       <DependentUpon>AddinRibbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyUserControl.resx">
+    <EmbeddedResource Include="View\MyUserControl.resx">
       <DependentUpon>MyUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -183,7 +187,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassroomAssignment_1_TemporaryKey.pfx" />
     <None Include="ClassroomAssignment_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,13 +196,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="AddinRibbon.cs">
+    <Compile Include="View\AddinRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AddinRibbon.Designer.cs">
+    <Compile Include="View\AddinRibbon.Designer.cs">
       <DependentUpon>AddinRibbon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon.cs">
+    <Compile Include="View\Ribbon.cs">
       <XmlRibbon>true</XmlRibbon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
@@ -214,7 +217,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ribbon.xml" />
+    <EmbeddedResource Include="View\Ribbon.xml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
