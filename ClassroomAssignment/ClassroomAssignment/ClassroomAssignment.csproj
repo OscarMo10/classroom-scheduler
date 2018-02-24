@@ -159,17 +159,17 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Model\Repo\InMemoryRoomRepository.cs" />
+    <Compile Include="Repo\InMemoryRoomRepository.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\DepartmentSheet.cs" />
-    <Compile Include="Model\Repo\ICourseRepository.cs" />
-    <Compile Include="Model\Repo\InMemoryCourseRepository.cs" />
-    <Compile Include="Model\Repo\IRoomRepository.cs" />
-    <Compile Include="Model\Utils\LogUtil.cs" />
-    <Compile Include="Model\Visual\ExcelSchedulePrinter.cs" />
-    <Compile Include="Model\Visual\ISchedulePrinter.cs" />
-    <Compile Include="Model\Visual\ScheduleVisualization.cs" />
-    <Compile Include="Model\Utils\DateUtil.cs" />
+    <Compile Include="Repo\ICourseRepository.cs" />
+    <Compile Include="Repo\InMemoryCourseRepository.cs" />
+    <Compile Include="Repo\IRoomRepository.cs" />
+    <Compile Include="Utils\LogUtil.cs" />
+    <Compile Include="Visual\ExcelSchedulePrinter.cs" />
+    <Compile Include="Visual\ISchedulePrinter.cs" />
+    <Compile Include="Visual\ScheduleVisualization.cs" />
+    <Compile Include="Utils\DateUtil.cs" />
     <Compile Include="View\MyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -222,6 +222,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="Template\Classroom Grid.xlsx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
