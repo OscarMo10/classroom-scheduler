@@ -3,7 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ClassroomAssignment.Model;
 using System.Collections.Generic;
-using ClassroomAssignment.Model.schedule_visual;
+using ClassroomAssignment.Model.Repo;
+using ClassroomAssignment.Model.Visual;
 
 namespace UnitTestProject
 {

@@ -6,6 +6,9 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using NLog.Config;
+using NLog.Targets;
+using NLog;
 
 namespace ClassroomAssignment
 {
@@ -17,6 +20,7 @@ namespace ClassroomAssignment
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            LogManager.GetCurrentClassLogger().Debug("hello");
             // Add a custom task pane
             myUserControl = new MyUserControl();
             customTaskPane = this.CustomTaskPanes.Add(myUserControl, "My Task Pane");
@@ -42,6 +46,8 @@ namespace ClassroomAssignment
         {
             return new Ribbon();
         }
+
+        
 
         
         #region VSTO generated code

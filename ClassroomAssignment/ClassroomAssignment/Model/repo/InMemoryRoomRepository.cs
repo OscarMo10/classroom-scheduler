@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassroomAssignment.Model
+namespace ClassroomAssignment.Model.Repo
 {
     class InMemoryRoomRepository : IRoomRepository
     {

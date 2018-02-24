@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ClassroomAssignment.Model.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassroomAssignment.Model.schedule_visual
+namespace ClassroomAssignment.Model.Visual
 {
     public class ScheduleVisualization
     {
@@ -21,7 +22,7 @@ namespace ClassroomAssignment.Model.schedule_visual
 
         public void PrintSchedule()
         {
-                Printer.Print(CourseRepo, RoomRepo);
+            Printer.Print(CourseRepo, RoomRepo);
         }
     }
 }

@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ClassroomAssignment.Model.utils
+namespace ClassroomAssignment.Model.Utils
 {
-    public class DateUtils
+    public class DateUtil
     {
-        private static Dictionary<string, string> DayNameMatcher;
+        private static Dictionary<string, string> DayNameMatcher = new Dictionary<string, string>();
 
-        static DateUtils()
+        static DateUtil()
         {
             DayNameMatcher.Add("Sn", DayOfWeek.Sunday.ToString());
             DayNameMatcher.Add("M", DayOfWeek.Monday.ToString());
@@ -24,7 +24,15 @@ namespace ClassroomAssignment.Model.utils
 
         public static string ShortToLongDayName(string dayAbbreviation)
         {
-            return DayNameMatcher[dayAbbreviation];
+            try
+            {
+                return DayNameMatcher[dayAbbreviation];
+            }
+            catch (Exception e)
+            {
+                LogUtil.Debug(e.Message);
+                return null;
+            }
         }
     }
 }
