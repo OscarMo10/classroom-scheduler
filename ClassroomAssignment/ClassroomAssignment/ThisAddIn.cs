@@ -17,18 +17,18 @@ namespace ClassroomAssignment
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
-              Workbook MerBook = new Workbook();
+            Spire.Xls.Workbook MerBook = new Spire.Xls.Workbook();
             MerBook.LoadFromFile("Celal1.xlsx");
-            Worksheet MerSheet = MerBook.Worksheets[0];
+            Spire.Xls.Worksheet MerSheet = MerBook.Worksheets[0];
 
-            Workbook SouBook1 = new Workbook();
+            Spire.Xls.Workbook SouBook1 = new Spire.Xls.Workbook();
             SouBook1.LoadFromFile("Celal2.xlsx");
             int a = SouBook1.Worksheets[0].LastRow;
             int b = SouBook1.Worksheets[0].LastColumn;
             SouBook1.Worksheets[0].Range[2, 1, a, b].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, a + MerSheet.LastRow, b]);
 
 
-            Workbook SouBook2 = new Workbook();
+            Spire.Xls.Workbook SouBook2 = new Spire.Xls.Workbook();
             SouBook2.LoadFromFile("Celal3.xlsx");
             int c = SouBook2.Worksheets[0].LastRow;
             int d = SouBook2.Worksheets[0].LastColumn;

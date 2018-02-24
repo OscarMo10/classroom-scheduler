@@ -38,7 +38,7 @@ namespace ClassroomAssignment.Model.Visual
             DayMap.Add(DayOfWeek.Tuesday, "D");
             DayMap.Add(DayOfWeek.Wednesday, "E");
             DayMap.Add(DayOfWeek.Thursday, "F");
-            DayMap.Add(DayOfWeek.Friday, "G")
+            DayMap.Add(DayOfWeek.Friday, "G");
 
         }
         
