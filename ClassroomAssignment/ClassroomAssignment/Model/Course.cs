@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Model
 {
-    class Course
+    public class Course
     {
         // Original Attributes of Supplied Spreadsheets
-        public int CourseID { get; set; }
+        public int ClassID { get; set; }
         public int SIS_ID { get; set; }
         public String Term { get; set; } 
         public int TermCode { get; set; }
@@ -28,7 +28,7 @@ namespace ClassroomAssignment.Model
         public String Campus { get; set; }
         public String InstructionMethod { get; set; }
         public String IntegerPartner { get; set; }
-        public String ShedulePrint { get; set; }
+        public String SchedulePrint { get; set; }
         public String Consent { get; set; }
         public int CreditHrsMin { get; set; }
         public int CreditHrs { get; set; }

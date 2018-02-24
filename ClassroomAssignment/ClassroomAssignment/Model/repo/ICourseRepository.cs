@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Model
 {
-    interface IRoomRepository
+    public interface ICourseRepository
     {
-        string getNormalizedRoomName(string roomName);
+        string Term { get; }
+        List<Course> Courses { get; }
     }
 }
