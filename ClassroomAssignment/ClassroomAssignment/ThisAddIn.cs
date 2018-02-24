@@ -6,13 +6,26 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using NLog.Config;
+using NLog.Targets;
+using NLog;
 
 namespace ClassroomAssignment
 {
     public partial class ThisAddIn
     {
+
+        private MyUserControl myUserControl;
+        private Microsoft.Office.Tools.CustomTaskPane customTaskPane;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            LogManager.GetCurrentClassLogger().Debug("hello");
+            // Add a custom task pane
+            myUserControl = new MyUserControl();
+            customTaskPane = this.CustomTaskPanes.Add(myUserControl, "My Task Pane");
+            this.customTaskPane.Visible = true;
+
             this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
         }
 
@@ -29,6 +42,14 @@ namespace ClassroomAssignment
             newFirstRow.Value2 = "This text was added by using code";
         }
 
+        protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            return new Ribbon();
+        }
+
+        
+
+        
         #region VSTO generated code
 
         /// <summary>
