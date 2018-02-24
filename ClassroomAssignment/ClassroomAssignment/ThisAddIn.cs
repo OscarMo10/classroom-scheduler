@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,27 +7,34 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
-using NLog.Config;
-using NLog.Targets;
-using NLog;
+using System.Windows.Forms;
+using Spire.Xls;
 
 namespace ClassroomAssignment
 {
     public partial class ThisAddIn
     {
-
-        private MyUserControl myUserControl;
-        private Microsoft.Office.Tools.CustomTaskPane customTaskPane;
-
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            LogManager.GetCurrentClassLogger().Debug("hello");
-            // Add a custom task pane
-            myUserControl = new MyUserControl();
-            customTaskPane = this.CustomTaskPanes.Add(myUserControl, "My Task Pane");
-            this.customTaskPane.Visible = true;
-
             this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
+              Workbook MerBook = new Workbook();
+            MerBook.LoadFromFile("Celal1.xlsx");
+            Worksheet MerSheet = MerBook.Worksheets[0];
+
+            Workbook SouBook1 = new Workbook();
+            SouBook1.LoadFromFile("Celal2.xlsx");
+            int a = SouBook1.Worksheets[0].LastRow;
+            int b = SouBook1.Worksheets[0].LastColumn;
+            SouBook1.Worksheets[0].Range[2, 1, a, b].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, a + MerSheet.LastRow, b]);
+
+
+            Workbook SouBook2 = new Workbook();
+            SouBook2.LoadFromFile("Celal3.xlsx");
+            int c = SouBook2.Worksheets[0].LastRow;
+            int d = SouBook2.Worksheets[0].LastColumn;
+            SouBook2.Worksheets[0].Range[2, 1, c, d].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, c + MerSheet.LastRow, d]);
+
+            MerBook.SaveToFile("result.xlsx", ExcelVersion.Version2010);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -42,14 +50,6 @@ namespace ClassroomAssignment
             newFirstRow.Value2 = "This text was added by using code";
         }
 
-        protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
-        {
-            return new Ribbon();
-        }
-
-        
-
-        
         #region VSTO generated code
 
         /// <summary>
