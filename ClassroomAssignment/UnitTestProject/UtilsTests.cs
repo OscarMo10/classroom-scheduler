@@ -1,15 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject
 {
     [TestClass]
-    public class UtilsTest
+    public class UtilsTests
     {
         [TestMethod]
         public void GetLongNameForDay_InvalidAbbreviation_Test()
         {
-            
         }
     }
 }

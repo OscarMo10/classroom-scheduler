@@ -56,7 +56,7 @@ namespace UnitTestProject
             
             ScheduleVisualization scheduleVisualization = new ScheduleVisualization(CourseRepoMock.Object, RoomRepoMock.Object, PrinterMock.Object);
             scheduleVisualization.PrintSchedule();
-
+            
             PrinterMock.Verify(x => x.Print(CourseRepoMock.Object, RoomRepoMock.Object));
         }
     }

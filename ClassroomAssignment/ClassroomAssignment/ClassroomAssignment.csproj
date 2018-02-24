@@ -156,16 +156,16 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Model\repo\InMemoryRoomRepository.cs" />
+    <Compile Include="Model\Repo\InMemoryRoomRepository.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\DepartmentSheet.cs" />
-    <Compile Include="Model\repo\ICourseRepository.cs" />
-    <Compile Include="Model\repo\InMemoryCourseRepository.cs" />
-    <Compile Include="Model\repo\IRoomRepository.cs" />
-    <Compile Include="Model\schedule-visual\ExcelSchedulePrinter.cs" />
-    <Compile Include="Model\schedule-visual\ISchedulePrinter.cs" />
-    <Compile Include="Model\schedule-visual\ScheduleVisualization.cs" />
-    <Compile Include="Model\utils\DateUtils.cs" />
+    <Compile Include="Model\Repo\ICourseRepository.cs" />
+    <Compile Include="Model\Repo\InMemoryCourseRepository.cs" />
+    <Compile Include="Model\Repo\IRoomRepository.cs" />
+    <Compile Include="Model\Schedule-Visual\ExcelSchedulePrinter.cs" />
+    <Compile Include="Model\Schedule-Visual\ISchedulePrinter.cs" />
+    <Compile Include="Model\Schedule-Visual\ScheduleVisualization.cs" />
+    <Compile Include="Model\Utils\DateUtils.cs" />
     <Compile Include="View\MyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,10 +230,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ClassroomAssignment_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>50EEC73282FAEF5FB6078B3DAF08B968B41EFBDB</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
