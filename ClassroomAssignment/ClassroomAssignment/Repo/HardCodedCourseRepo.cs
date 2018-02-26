@@ -1,25 +1,24 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using ClassroomAssignment.Model;
-using System.Collections.Generic;
+﻿using ClassroomAssignment.Model;
 using ClassroomAssignment.Model.Repo;
-using ClassroomAssignment.Model.Visual;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UnitTestProject
+namespace ClassroomAssignment.Repo
 {
-    [TestClass]
-    public class ScheduleVisualizationTests
+    class HardCodedCourseRepo : ICourseRepository
     {
-        Mock<ISchedulePrinter> PrinterMock = new Mock<ISchedulePrinter>();
-        Mock<IRoomRepository> RoomRepoMock = new Mock<IRoomRepository>();
-        Mock<ICourseRepository> CourseRepoMock = new Mock<ICourseRepository>(); 
-        string Term = "Fall 2018";
-        List<Course> Courses;
+        public string Term { get; }
 
-        [TestInitialize]
-        public void Initialize()
+        public List<Course> Courses { get; }
+
+        public HardCodedCourseRepo()
         {
+            Term = "Fall 2018";
+            this.Courses = new List<Course>();
+
             Course testCourse = new Course();
             testCourse.ClassID = 239;
             testCourse.SIS_ID = 12615;
@@ -40,25 +39,15 @@ namespace UnitTestProject
             testCourse.Notes = "PKI 157";
             testCourse.NeedsRoom = true;
             testCourse.AlreadyAssignedRoom = true;
+            testCourse.StartTime = new TimeSpan(13, 30, 0);
+            testCourse.EndTime = new TimeSpan(14, 45, 0);
 
             // This is the "normalized" name for the room
             testCourse.RoomAssignment = "PKI 157";
             testCourse.MeetingDays = new List<DayOfWeek>() { DayOfWeek.Monday, DayOfWeek.Wednesday };
 
-            Courses = new List<Course>();
             Courses.Add(testCourse);
-            CourseRepoMock.Setup(x => x.Courses).Returns(Courses);
-            CourseRepoMock.Setup(x => x.Term).Returns(Term);
-        }
 
-        [TestMethod]
-        public void PrintCalled_Test()
-        {
-            
-            ScheduleVisualization scheduleVisualization = new ScheduleVisualization(CourseRepoMock.Object, RoomRepoMock.Object, PrinterMock.Object);
-            scheduleVisualization.PrintSchedule();
-            
-            PrinterMock.Verify(x => x.Print(CourseRepoMock.Object, RoomRepoMock.Object));
         }
     }
 }
