@@ -25,14 +25,14 @@ namespace ClassroomAssignment
             SouBook1.LoadFromFile("Celal2.xlsx");
             int a = SouBook1.Worksheets[0].LastRow;
             int b = SouBook1.Worksheets[0].LastColumn;
-            SouBook1.Worksheets[0].Range[2, 1, a, b].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, a + MerSheet.LastRow, b]);
+            SouBook1.Worksheets[0].Range[4, 1, a, b].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, a + MerSheet.LastRow, b]);
 
 
             Spire.Xls.Workbook SouBook2 = new Spire.Xls.Workbook();
             SouBook2.LoadFromFile("Celal3.xlsx");
             int c = SouBook2.Worksheets[0].LastRow;
             int d = SouBook2.Worksheets[0].LastColumn;
-            SouBook2.Worksheets[0].Range[2, 1, c, d].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, c + MerSheet.LastRow, d]);
+            SouBook2.Worksheets[0].Range[4, 1, c, d].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, c + MerSheet.LastRow, d]);
 
             MerBook.SaveToFile("result.xlsx", ExcelVersion.Version2010);
         }
