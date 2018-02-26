@@ -8,18 +8,18 @@ namespace ClassroomAssignment.Model.Repo
 {
     class InMemoryRoomRepository : IRoomRepository
     {
-        static InMemoryRoomRepository Instance;
+        private static InMemoryRoomRepository instance;
 
+        private static void initInstance()
+        {
+            instance = new InMemoryRoomRepository();
+           
+        }
 
         public static InMemoryRoomRepository getInstance()
         {
-            if (Instance != null)
-            {
-                return Instance;
-            }
-
-            else return new InMemoryRoomRepository();
-        }
+            return instance;
+        }        
 
         public string getNormalizedRoomName(string roomName)
         {
