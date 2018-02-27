@@ -13,6 +13,7 @@ using System.IO;
 using System.Diagnostics;
 using ClassroomAssignment.Model.Visual;
 using ClassroomAssignment.Repo;
+using ClassroomAssignment.Model.Repo;
 
 namespace ClassroomAssignment
 {
@@ -39,13 +40,23 @@ namespace ClassroomAssignment
             //SouBook2.Worksheets[0].Range[2, 1, c, d].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, c + MerSheet.LastRow, d]);
 
             //MerBook.SaveToFile("result.xlsx", ExcelVersion.Version2010);
+            
+            Excel.Workbook wkbook = Application.Workbooks.Add();
+                
+            Excel.Worksheet worksheet = wkbook.Sheets.Add(Count: 1, Type : "ClassroomGrid.xlsx");
+            worksheet.get_Range("A1").Value = "Test";
+            
+
+            // InMemoryCourseRepository courseRepo = InMemoryCourseRepository.getInstance();
+           
+            
 
             
-            Excel.Workbook newWorkbook = Application.Workbooks.Open(@"ClassroomGrid.xlsx");
-            Excel.Workbook w = Application.Workbooks.Item["ClassroomGrid.xlsx"];
+           
 
-            // ScheduleVisualization sv = new ScheduleVisualization(new HardCodedCourseRepo(), null, new ExcelSchedulePrinter());
-            // sv.PrintSchedule();
+
+            //ScheduleVisualization sv = new ScheduleVisualization(new HardCodedCourseRepo(), null, new ExcelSchedulePrinter());
+            //sv.PrintSchedule();
            
 
         }
