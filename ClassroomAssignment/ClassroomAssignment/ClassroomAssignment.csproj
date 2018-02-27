@@ -226,12 +226,6 @@
     <Compile Include="Visual\ISchedulePrinter.cs" />
     <Compile Include="Visual\ScheduleVisualization.cs" />
     <Compile Include="Utils\DateUtil.cs" />
-    <Compile Include="View\MyUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\MyUserControl.Designer.cs">
-      <DependentUpon>MyUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -243,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddinRibbon.resx">
       <DependentUpon>AddinRibbon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MyUserControl.resx">
-      <DependentUpon>MyUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
