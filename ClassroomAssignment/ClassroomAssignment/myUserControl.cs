@@ -15,6 +15,8 @@ namespace ClassroomAssignment
         public myUserControl()
         {
             InitializeComponent();
+            PopulateDataGridView();
+
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)

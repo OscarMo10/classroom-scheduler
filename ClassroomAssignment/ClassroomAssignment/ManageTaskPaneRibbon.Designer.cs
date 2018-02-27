@@ -56,7 +56,7 @@
             // 
             // toggleButton1
             // 
-            this.toggleButton1.Label = "Show Task Pane";
+            this.toggleButton1.Label = "Room Information ";
             this.toggleButton1.Name = "toggleButton1";
             // 
             // ManageTaskPaneRibbon
