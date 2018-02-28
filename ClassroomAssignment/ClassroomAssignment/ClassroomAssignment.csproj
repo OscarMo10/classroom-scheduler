@@ -109,39 +109,22 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Barcode, Version=1.4.0.16040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.Barcode.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DataExport, Version=3.5.135.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.DataExport.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DataExport.ResourceMgr, Version=1.6.20.4040, Culture=neutral, PublicKeyToken=4bc1500157862925, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.DataExport.ResourceMgr.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Doc, Version=5.9.8.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.Doc.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.DocViewer.Forms, Version=2.4.1.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
+    <Reference Include="Spire.Common, Version=1.2.782.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.Common.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License, Version=1.3.6.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.License.dll</HintPath>
+      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.License.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Pdf, Version=3.9.99.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.Pdf.dll</HintPath>
+    <Reference Include="Spire.Pdf, Version=4.2.2.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.PdfViewer.Forms, Version=2.11.46.15340, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Presentation, Version=2.8.5.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.Presentation.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.XLS, Version=7.12.14.15040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.Office.2.15\lib\net40\Spire.XLS.dll</HintPath>
+    <Reference Include="Spire.XLS, Version=8.0.0.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.XLS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -222,6 +205,12 @@
     <Compile Include="Repo\InMemoryCourseRepository.cs" />
     <Compile Include="Repo\IRoomRepository.cs" />
     <Compile Include="Utils\LogUtil.cs" />
+    <Compile Include="View\Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visual\ExcelSchedulePrinter.cs" />
     <Compile Include="Visual\ISchedulePrinter.cs" />
     <Compile Include="Visual\ScheduleVisualization.cs" />
@@ -288,6 +277,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="View\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Ribbon.xml" />
   </ItemGroup>
   <ItemGroup>

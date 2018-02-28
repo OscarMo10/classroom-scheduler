@@ -52,7 +52,7 @@ namespace ClassroomAssignment.Model.Visual
         public void Print(ICourseRepository courseRepo, IRoomRepository roomRepo)
         {
             List<Course> courses = courseRepo.Courses;
-            IEnumerable<Course> roomedCourses = courses.Where<Course>(x => x.AlreadyAssignedRoom);
+            IEnumerable<Course> roomedCourses = courses.Where<Course>(x => x.AlreadyAssignedRoom && x.MeetingDays != null);
             Dictionary<string, List<Course>> roomCourseMap = new Dictionary<string, List<Course>>();
 
             foreach (Course course in roomedCourses)
@@ -69,14 +69,18 @@ namespace ClassroomAssignment.Model.Visual
 
             List<string> roomWithCourses = roomCourseMap.Keys.ToList<string>();
 
+            Excel.Workbook workbook = Globals.ThisAddIn.Application.ActiveWorkbook;
             foreach (string room in roomWithCourses)
             {
-                Excel.Workbook workbook = Globals.ThisAddIn.Application.ActiveWorkbook;
-                Excel.Worksheet worksheet = workbook.Sheets.Add(Type: XlSheetType.xlWorksheet);
+
+                Excel.Worksheet worksheet = workbook.Sheets.Add(Type: "ClassroomGridTemplate.xlsx");
+                Globals.ThisAddIn.Application.ScreenUpdating = false;
+                worksheet.Name = room;
+                Globals.ThisAddIn.Application.ScreenUpdating = false;
                 worksheet.get_Range(RoomNameCell).Value = room;
-                printHeaders(worksheet);
-                printTimes(worksheet);
-                PrintCourses(worksheet, roomCourseMap[room]);
+                //printHeaders(worksheet);
+                //printTimes(worksheet);
+                //PrintCourses(worksheet, roomCourseMap[room]);
             }
         }
 
@@ -115,6 +119,7 @@ namespace ClassroomAssignment.Model.Visual
             {
                 foreach (DayOfWeek meetingDay in course.MeetingDays)
                 {
+                    Globals.ThisAddIn.Application.ScreenUpdating = false;
                     string column = DayMap[meetingDay];
                     int startRow = GetRowForTime(course.StartTime.Value);
                     int endRow = GetRowForTime(course.EndTime.Value);
@@ -126,6 +131,8 @@ namespace ClassroomAssignment.Model.Visual
                     startCell.Value = course.Course_Label;
                 }
             }
+
+            Globals.ThisAddIn.Application.ScreenUpdating = true;
         }
 
         private int GetRowForTime(TimeSpan time)

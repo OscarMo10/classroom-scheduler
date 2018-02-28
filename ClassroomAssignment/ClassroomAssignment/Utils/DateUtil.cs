@@ -9,30 +9,35 @@ namespace ClassroomAssignment.Model.Utils
 {
     public class DateUtil
     {
-        private static Dictionary<string, string> DayNameMatcher = new Dictionary<string, string>();
+        private static Dictionary<string, DayOfWeek> DayNameMatcher = new Dictionary<string, DayOfWeek>();
 
         static DateUtil()
         {
-            DayNameMatcher.Add("Sn", DayOfWeek.Sunday.ToString());
-            DayNameMatcher.Add("M", DayOfWeek.Monday.ToString());
-            DayNameMatcher.Add("T", DayOfWeek.Tuesday.ToString());
-            DayNameMatcher.Add("W", DayOfWeek.Wednesday.ToString());
-            DayNameMatcher.Add("TH", DayOfWeek.Thursday.ToString());
-            DayNameMatcher.Add("F", DayOfWeek.Friday.ToString());
-            DayNameMatcher.Add("S", DayOfWeek.Saturday.ToString());
+            DayNameMatcher.Add("Sn", DayOfWeek.Sunday);
+            DayNameMatcher.Add("M", DayOfWeek.Monday);
+            DayNameMatcher.Add("T", DayOfWeek.Tuesday);
+            DayNameMatcher.Add("W", DayOfWeek.Wednesday);
+            DayNameMatcher.Add("TH", DayOfWeek.Thursday);
+            DayNameMatcher.Add("F", DayOfWeek.Friday);
+            DayNameMatcher.Add("S", DayOfWeek.Saturday);
         }
 
         public static string ShortToLongDayName(string dayAbbreviation)
         {
             try
             {
-                return DayNameMatcher[dayAbbreviation];
+                return DayNameMatcher[dayAbbreviation].ToString();
             }
             catch (Exception e)
             {
                 LogUtil.Debug(e.Message);
                 return null;
             }
+        }
+
+        public static DayOfWeek ShortNameToDayOfWeek(string dayAbbreviation)
+        {
+            return DayNameMatcher[dayAbbreviation];
         }
     }
 }

@@ -33,7 +33,7 @@ namespace ClassroomAssignment.Model
 
         public class MeetingPatternOptions
         {
-            public static string TIME_PATTERN = @"((?<daysOfWeek>(M|T|W|TH|F))+ (?<startTime>\d{1,2}:\d{1,2}(am|pm))-(?<endTime>\d{1,2}:\d{1,2}(am|pm)))";
+            public static string TIME_PATTERN = @"((?<daysOfWeek>(M|T|W|TH|F)+) (?<startTimeHr>\d{1,2}):(?<startTimeMin>\d{1,2})(?<startTimePM>am|pm)-(?<endTimeHr>\d{1,2}):(?<endTimeMin>\d{1,2})(?<endTimePM>am|pm))";
             public static string DOES_NOT_MEET = "Does Not Meet";
         }
     }
