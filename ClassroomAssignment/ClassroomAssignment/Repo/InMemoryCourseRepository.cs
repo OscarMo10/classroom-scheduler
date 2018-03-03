@@ -35,8 +35,8 @@ namespace ClassroomAssignment.Model.Repo
 
         public InMemoryCourseRepository(string term, List<Course> courses)
         {
-            _instance.Term = term;
-            _instance.Courses = courses;
+            Term = term;
+            Courses = courses;
         }
     }
 }
