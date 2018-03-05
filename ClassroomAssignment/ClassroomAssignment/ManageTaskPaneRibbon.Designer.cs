@@ -58,6 +58,7 @@
             // 
             this.toggleButton1.Label = "Room Information ";
             this.toggleButton1.Name = "toggleButton1";
+            this.toggleButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton1_Click);
             // 
             // ManageTaskPaneRibbon
             // 
