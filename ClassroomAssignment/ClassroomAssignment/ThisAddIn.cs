@@ -33,16 +33,12 @@ namespace ClassroomAssignment
             //this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
 
 
-            // Excel.Workbook wkbook = Application.Workbooks.Add();
 
-            //Excel.Worksheet worksheet = wkbook.Sheets.Add(Count: 1, Type : "ClassroomGrid.xlsx");
-            //worksheet.get_Range("A1").Value = "Test";
 
 
             // InMemoryCourseRepository courseRepo = InMemoryCourseRepository.getInstance();
 
 
-           
 
 
 
@@ -82,12 +78,16 @@ namespace ClassroomAssignment
 
         public void StartProject()
         {
-            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            folderBrowser.ShowDialog();
+            Excel.Worksheet w1 = Application.ActiveWorkbook.Sheets.Add(Type: "data1.csv");
+            Excel.Worksheet w2 = Application.ActiveWorkbook.Sheets.Add(Type: "data2.csv");
 
-            var pathToDocs = folderBrowser.SelectedPath;
-            string[] docLocations = Directory.GetFiles(pathToDocs);
-            compileFiles();
+
+            //FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+            //folderBrowser.ShowDialog();
+
+            //var pathToDocs = folderBrowser.SelectedPath;
+            //string[] docLocations = Directory.GetFiles(pathToDocs);
+            //compileFiles();
             //ProjectWorkbook = Application.Workbooks.Add();
 
             //DataSheetsName = docLocations.Select(i => Path.GetFileNameWithoutExtension(i));
