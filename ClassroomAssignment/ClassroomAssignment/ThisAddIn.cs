@@ -19,7 +19,7 @@ namespace ClassroomAssignment
         {
 
             myUserControl1 = new myUserControl();
-            myCustomTaskPane = this.CustomTaskPanes.Add(myUserControl1, "My Task Pane");
+            myCustomTaskPane = this.CustomTaskPanes.Add(myUserControl1, "Classroom Information");
             myCustomTaskPane.Visible = true;
 
             myCustomTaskPane.VisibleChanged +=

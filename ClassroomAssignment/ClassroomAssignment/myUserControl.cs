@@ -28,5 +28,27 @@ namespace ClassroomAssignment
         {
 
         }
+
+        private void ReadXMLButton_Click(object sender, EventArgs e)
+        {
+            string filePath = "C:\\Users\\Eric\\source\\repos\\classroom-scheduler\\ClassroomAssignment\\ClassroomAssignment\\XML\\RoomInfo.xml";
+
+            RoomDataSet.ReadXml(filePath);
+
+            dataGridView1.DataSource = RoomDataSet;
+            dataGridView1.DataMember = "Room";
+        }
+
+        private void ShowSchemaButton_Click(object sender, EventArgs e)
+        {
+            System.IO.StringWriter swXML = new System.IO.StringWriter();
+            RoomDataSet.WriteXmlSchema(swXML);
+            textBox1.Text = swXML.ToString();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

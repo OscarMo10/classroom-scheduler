@@ -29,49 +29,77 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.RoomNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxSeating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ReadXMLButton = new System.Windows.Forms.Button();
+            this.ShowSchemaButton = new System.Windows.Forms.Button();
+            this.RoomDataSet = new System.Data.DataSet();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RoomNumber,
-            this.MaxSeating});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(350, 241);
+            this.dataGridView1.Size = new System.Drawing.Size(390, 273);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
             // 
-            // RoomNumber
+            // textBox1
             // 
-            this.RoomNumber.HeaderText = "Room Number";
-            this.RoomNumber.Name = "RoomNumber";
+            this.textBox1.Location = new System.Drawing.Point(111, 6);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
             // 
-            // MaxSeating
+            // ReadXMLButton
             // 
-            this.MaxSeating.HeaderText = "Max Seating";
-            this.MaxSeating.Name = "MaxSeating";
+            this.ReadXMLButton.Location = new System.Drawing.Point(30, 6);
+            this.ReadXMLButton.Name = "ReadXMLButton";
+            this.ReadXMLButton.Size = new System.Drawing.Size(75, 23);
+            this.ReadXMLButton.TabIndex = 5;
+            this.ReadXMLButton.Text = "Read XML";
+            this.ReadXMLButton.UseVisualStyleBackColor = true;
+            this.ReadXMLButton.Click += new System.EventHandler(this.ReadXMLButton_Click);
+            // 
+            // ShowSchemaButton
+            // 
+            this.ShowSchemaButton.Location = new System.Drawing.Point(217, 6);
+            this.ShowSchemaButton.Name = "ShowSchemaButton";
+            this.ShowSchemaButton.Size = new System.Drawing.Size(87, 23);
+            this.ShowSchemaButton.TabIndex = 6;
+            this.ShowSchemaButton.Text = "Show Schema";
+            this.ShowSchemaButton.UseVisualStyleBackColor = true;
+            this.ShowSchemaButton.Click += new System.EventHandler(this.ShowSchemaButton_Click);
+            // 
+            // RoomDataSet
+            // 
+            this.RoomDataSet.DataSetName = "RoomDataSet";
             // 
             // myUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ShowSchemaButton);
+            this.Controls.Add(this.ReadXMLButton);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "myUserControl";
             this.Size = new System.Drawing.Size(360, 249);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomDataSet)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
-
+        //hardcode for population of datagrid info
         private void PopulateDataGridView()
         {
-
+            /*
             string[] row0 = { "153", "40" };
             string[] row1 = { "155", "45" };
             string[] row2 = { "157", "24" };
@@ -114,13 +142,15 @@
             dataGridView1.Rows.Add(row18);
 
             dataGridView1.Columns[0].DisplayIndex = 0;
-
+            */
         }
 
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxSeating;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button ReadXMLButton;
+        private System.Windows.Forms.Button ShowSchemaButton;
+        private System.Data.DataSet RoomDataSet;
     }
 }
