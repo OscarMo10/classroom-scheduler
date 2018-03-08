@@ -17,9 +17,11 @@ namespace UnitTestProject
             using(var textReader = File.OpenText(pathToDataFile))
             {
                 var csv = new CsvHelper.CsvReader(textReader);
-                csv.Read();
-                csv.Read();
-                csv.Read();
+                csv.Read(); // first row
+                csv.Read(); // second row
+                csv.Read(); // third rows
+                csv.Read(); // fouth row: course title
+                csv.Read(); // fifth row: actual record
 
                 csv.Configuration.HasHeaderRecord = false;
                 csv.Configuration.RegisterClassMap(new CourseClassMap());

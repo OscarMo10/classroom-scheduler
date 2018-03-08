@@ -22,13 +22,13 @@ namespace UnitTestProject
         {
             Course testCourse = new Course();
             testCourse.ClassID = "239";
-            testCourse.SIS_ID = 12615;
-            testCourse.TermCode = 1188;
+            testCourse.SIS_ID = "12615";
+            testCourse.TermCode = "1188";
             testCourse.DepartmentCode = "UNO-BIOI";
             testCourse.SubjectCode = "BIOI";
-            testCourse.CatalogNumber = 1000;
+            testCourse.CatalogNumber = "1000";
             testCourse.Course_Label = "BIOI 1000";
-            testCourse.Section_Number = 1;
+            testCourse.Section_Number = "1";
             testCourse.MeetingPattern = "MW 1:30pm-2:45pm";
             testCourse.Instructor = "Bastola, Dhundy";
             testCourse.Room = "General Assignment Room";
