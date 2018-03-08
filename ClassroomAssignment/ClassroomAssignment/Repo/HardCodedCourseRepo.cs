@@ -20,7 +20,7 @@ namespace ClassroomAssignment.Repo
             this.Courses = new List<Course>();
 
             Course testCourse = new Course();
-            testCourse.ClassID = 239;
+            testCourse.ClassID = "239";
             testCourse.SIS_ID = 12615;
             testCourse.TermCode = 1188;
             testCourse.DepartmentCode = "UNO-BIOI";

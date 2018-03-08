@@ -103,17 +103,35 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.7.0.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelDataReader, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.4.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.DataSet.3.4.0\lib\net45\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Moq, Version=4.8.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.8.2\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Common, Version=1.2.782.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.Common.dll</HintPath>
@@ -192,16 +210,18 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="ManageTaskPaneRibbon.cs">
+    <Compile Include="DepartmentSheetCompiler.cs" />
+    <Compile Include="Model\CourseClassMap.cs" />
+    <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ManageTaskPaneRibbon.Designer.cs">
+    <Compile Include="View\ManageTaskPaneRibbon.Designer.cs">
       <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
     </Compile>
-    <Compile Include="myUserControl.cs">
+    <Compile Include="View\myUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="myUserControl.Designer.cs">
+    <Compile Include="View\myUserControl.Designer.cs">
       <DependentUpon>myUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Repo\HardCodedCourseRepo.cs" />
@@ -211,6 +231,7 @@
     <Compile Include="Repo\ICourseRepository.cs" />
     <Compile Include="Repo\InMemoryCourseRepository.cs" />
     <Compile Include="Repo\IRoomRepository.cs" />
+    <Compile Include="Utils\ExcelUtil.cs" />
     <Compile Include="Utils\LogUtil.cs" />
     <Compile Include="View\Home.cs">
       <SubType>UserControl</SubType>
@@ -225,10 +246,10 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="ManageTaskPaneRibbon.resx">
+    <EmbeddedResource Include="View\ManageTaskPaneRibbon.resx">
       <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="myUserControl.resx">
+    <EmbeddedResource Include="View\myUserControl.resx">
       <DependentUpon>myUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddinRibbon.resx">
@@ -243,7 +264,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassroomAssignment_1_TemporaryKey.pfx" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

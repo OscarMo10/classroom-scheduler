@@ -17,6 +17,7 @@ using ClassroomAssignment.Model.Repo;
 using ClassroomAssignment.Model;
 using System.Text.RegularExpressions;
 using ClassroomAssignment.Model.Utils;
+using ClassroomAssignment.Utils;
 
 namespace ClassroomAssignment
 {
@@ -78,56 +79,30 @@ namespace ClassroomAssignment
 
         public void StartProject()
         {
-            Excel.Worksheet w1 = Application.ActiveWorkbook.Sheets.Add(Type: "data1.csv");
-            Excel.Worksheet w2 = Application.ActiveWorkbook.Sheets.Add(Type: "data2.csv");
+            //this.Application.ScreenUpdating = false;
+            //Excel.Workbook w = this.Application.ActiveWorkbook;
+            //this.Application.ActiveWindow.Visible = false;
+
+            //w.Sheets.Add(Type: "data1.csv");
+            //w.Sheets.Add(Type: "data2.csv");
+            //Application.ScreenUpdating = true;
+            //this.Application.ActiveWindow.Visible = true;
+            //w.Activate();
+
+            //this.Application.ScreenUpdating = true;
 
 
-            //FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            //folderBrowser.ShowDialog();
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+            var result = folderBrowser.ShowDialog();
 
-            //var pathToDocs = folderBrowser.SelectedPath;
-            //string[] docLocations = Directory.GetFiles(pathToDocs);
-            //compileFiles();
-            //ProjectWorkbook = Application.Workbooks.Add();
-
-            //DataSheetsName = docLocations.Select(i => Path.GetFileNameWithoutExtension(i));
-            //initCourseRepo(new List<string>() { "results.xlsx" });
+            if (result == DialogResult.OK)
+            {
+                var pathToDocs = folderBrowser.SelectedPath;
+                string[] docLocations = Directory.GetFiles(pathToDocs);
+                DepartmentSheetCompiler.CompileFiles(docLocations);
+            }
         }
 
-        private void compileFiles()
-        {
-            Spire.Xls.Workbook temp = new Spire.Xls.Workbook();
-            temp.LoadFromFile(@"data1.csv", ",", 1, 1);
-            temp.SaveToFile(@"data1.xls", ExcelVersion.Version97to2003);
-            temp = new Spire.Xls.Workbook();
-            temp.LoadFromFile(@"data2.csv", ",", 1, 1);
-            temp.SaveToFile(@"data2.xls", ExcelVersion.Version97to2003);
-            temp = new Spire.Xls.Workbook();
-            temp.LoadFromFile(@"data3.csv", ",", 1,1);
-            temp.SaveToFile(@"data3.xls", ExcelVersion.Version97to2003);
-
-            Spire.Xls.Workbook MerBook = new Spire.Xls.Workbook();
-            MerBook.LoadFromFile("data1.xls");
-            Spire.Xls.Worksheet MerSheet = MerBook.Worksheets[0];
-
-            Spire.Xls.Workbook SouBook1 = new Spire.Xls.Workbook();
-            SouBook1.LoadFromFile("data2.xls");
-            int a = SouBook1.Worksheets[0].LastRow;
-            int b = SouBook1.Worksheets[0].LastColumn;
-            SouBook1.Worksheets[0].Range[4, 1, a, b].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, a + MerSheet.LastRow, b]);
-
-
-            Spire.Xls.Workbook SouBook2 = new Spire.Xls.Workbook();
-            SouBook2.LoadFromFile("data3.xls");
-            int c = SouBook2.Worksheets[0].LastRow;
-            int d = SouBook2.Worksheets[0].LastColumn;
-            SouBook2.Worksheets[0].Range[4, 1, c, d].Copy(MerSheet.Range[MerSheet.LastRow + 1, 1, c + MerSheet.LastRow, d]);
-
-            //MerBook.Worksheets[1].Visibility = Spire.Xls.WorksheetVisibility.StrongHidden;
-            MerBook.SaveToFile("result.xls", ExcelVersion.Version97to2003);
-            Application.ActiveWorkbook.Sheets.Add(Type: "result.xls");
-            initCourseRepo();
-        }
 
         private void initCourseRepo()
         {

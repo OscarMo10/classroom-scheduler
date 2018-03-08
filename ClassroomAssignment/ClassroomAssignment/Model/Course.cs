@@ -9,7 +9,7 @@ namespace ClassroomAssignment.Model
     public class Course
     {
         // Original Attributes of Supplied Spreadsheets
-        public int ClassID { get; set; }
+        public string ClassID { get; set; }
         public int SIS_ID { get; set; }
         public String Term { get; set; } 
         public int TermCode { get; set; }

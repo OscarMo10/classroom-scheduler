@@ -21,7 +21,7 @@ namespace UnitTestProject
         public void Initialize()
         {
             Course testCourse = new Course();
-            testCourse.ClassID = 239;
+            testCourse.ClassID = "239";
             testCourse.SIS_ID = 12615;
             testCourse.TermCode = 1188;
             testCourse.DepartmentCode = "UNO-BIOI";
