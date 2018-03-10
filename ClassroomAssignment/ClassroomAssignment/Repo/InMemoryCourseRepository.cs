@@ -9,15 +9,9 @@ namespace ClassroomAssignment.Model.Repo
     class InMemoryCourseRepository : ICourseRepository
     {
         private static InMemoryCourseRepository _instance;
-        private string term;
+        public string Term { get; private set; }
         private List<Course> courses;
 
-        public string Term
-        {
-            get { return term; }
-
-            private set { term = value; }
-        }
 
         public List<Course> Courses {
             get { return courses; }

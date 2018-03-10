@@ -1,20 +1,20 @@
 ﻿using ClassroomAssignment.Model.Repo;
-using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
-
+using NPOI.SS.UserModel;
+using NPOI.SS.Util;
+using static ClassroomAssignment.Model.ClassScheduleTemplate;
+using System.Collections.Specialized;
+using System.Collections;
 
 namespace ClassroomAssignment.Model.Visual
 {
     class ExcelSchedulePrinter : ISchedulePrinter
     {
-        static string RoomNameCell = "A3";
-        static string RoomCapacityCell = "B3";
-        static string TimeHeaderLocation = "B5";
+        static Tuple<int, int> RoomNameLocation = Tuple.Create<int, int>(2, 0);
+        static Tuple<int, int> RoomCapacityLocation = Tuple.Create<int, int>(2, 1);
+        static Tuple<int,int> TimeHeaderLocation = Tuple.Create<int, int>(4, 1);
         static int CellSpanPerTimeInterval = 2;
         static int startTimeLocationRow = 6;
 
@@ -24,6 +24,22 @@ namespace ClassroomAssignment.Model.Visual
         
         static Dictionary<TimeSpan, int> TimeMap = new Dictionary<TimeSpan, int>();
         static Dictionary<DayOfWeek, int> DayMap = new Dictionary<DayOfWeek, int>();
+
+        private IWorkbook _workbook;
+        public IWorkbook Workbook
+        {
+            get
+            {
+                return _workbook;
+            }
+            set
+            {
+                _workbook = value;
+                scheduleTemplate = _workbook.GetSheet(ClassScheduleTemplate.SCHEDULE_TEMPLATE_NAME);
+            }
+        }
+
+        private ISheet scheduleTemplate;
 
         static ExcelSchedulePrinter()
         {
@@ -40,9 +56,9 @@ namespace ClassroomAssignment.Model.Visual
             }
 
             // initialize DayMap: Maps days to column locations
-            DayMap.Add(DayOfWeek.Monday, 3);
-            DayMap.Add(DayOfWeek.Tuesday, 4);
-            DayMap.Add(DayOfWeek.Wednesday, 5);
+            DayMap.Add(DayOfWeek.Monday, 2);
+            DayMap.Add(DayOfWeek.Tuesday, 3);
+            DayMap.Add(DayOfWeek.Wednesday, 4);
             DayMap.Add(DayOfWeek.Thursday, 6);
             DayMap.Add(DayOfWeek.Friday, 7);
 
@@ -53,9 +69,49 @@ namespace ClassroomAssignment.Model.Visual
         {
             List<Course> courses = courseRepo.Courses;
             IEnumerable<Course> roomedCourses = courses.Where<Course>(x => x.AlreadyAssignedRoom && x.MeetingDays != null);
+            Dictionary<string, List<Course>> roomCourseMap = getRoomNameToCoursesMap(roomedCourses);
+
+            List<string> roomWithCourses = roomCourseMap.Keys.ToList<string>();
+
+            foreach (string room in roomWithCourses)
+            {
+                
+                ISheet sheet = Workbook.CloneSheet(Workbook.GetSheetIndex(scheduleTemplate));
+                var sheetIndex = Workbook.GetSheetIndex(sheet);
+                Workbook.SetSheetName(sheetIndex, room);
+                Workbook.SetSheetHidden(sheetIndex, SheetState.Visible);
+
+                ICell cell = sheet.GetRow(RoomNameLocation.Item1).GetCell(RoomNameLocation.Item2);
+                cell.SetCellValue(room);
+                
+                PrintCourses(sheet, roomCourseMap[room]);
+                printLegend(sheet);
+            }            
+        }
+
+        private void printLegend(ISheet sheet)
+        {
+            CellReference cellReference = new CellReference("J5");
+            int rowIndex = cellReference.Row;
+            int cellIndex = cellReference.Col;
+
+            OrderedDictionary subjectColorMap =  ClassScheduleTemplate.GetSubjectColorMap();
+            foreach(DictionaryEntry entry in subjectColorMap)
+            {
+                IRow row = sheet.GetRow(rowIndex);
+                ICell cell = row.GetCell(cellIndex);
+                cell.CellStyle = ClassScheduleTemplate.GetCellStyle(Workbook, (short) entry.Value);
+                cell.SetCellValue((string) entry.Key);
+                rowIndex++;
+            }
+        }
+
+        private Dictionary<string, List<Course>> getRoomNameToCoursesMap(IEnumerable<Course> courses) 
+        {
+
             Dictionary<string, List<Course>> roomCourseMap = new Dictionary<string, List<Course>>();
 
-            foreach (Course course in roomedCourses)
+            foreach (Course course in courses)
             {
                 if (roomCourseMap.ContainsKey(course.RoomAssignment))
                 {
@@ -67,67 +123,10 @@ namespace ClassroomAssignment.Model.Visual
                 }
             }
 
-            List<string> roomWithCourses = roomCourseMap.Keys.ToList<string>();
-
-            Spire.Xls.Workbook template = new Spire.Xls.Workbook();
-            template.LoadFromFile("ClassroomGridTemplate.xls", Spire.Xls.ExcelVersion.Version97to2003);
-            Spire.Xls.Workbook scheduleBook = new Spire.Xls.Workbook();
-
-            foreach (string room in roomWithCourses)
-            {
-                Spire.Xls.Worksheet worksheet = scheduleBook.Worksheets.AddCopy(template.Worksheets[0]);
-                worksheet.Name = room;
-                worksheet.Range[RoomNameCell].Value = room;
-                
-                //printHeaders(worksheet);
-                //printTimes(worksheet);
-                PrintCourses(worksheet, roomCourseMap[room]);
-            }
-
-            //scheduleBook.Worksheets[0].Visibility = Spire.Xls.WorksheetVisibility.StrongHidden;
-            //scheduleBook.Worksheets[1].Visibility = Spire.Xls.WorksheetVisibility.StrongHidden;
-            scheduleBook.SaveToFile("schedule.xls");
-            Globals.ThisAddIn.Application.ActiveWorkbook.Sheets.Add(Type: "schedule.xls");
-            Excel.Worksheet sheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets["Sheet1"];
-            sheet.Visible = XlSheetVisibility.xlSheetHidden;
-            sheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets["Sheet1 (2)"];
-            sheet.Visible = XlSheetVisibility.xlSheetHidden;
-            sheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets["Sheet2"];
-            sheet.Visible = XlSheetVisibility.xlSheetHidden;
-            sheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets["Sheet3"];
-            sheet.Visible = XlSheetVisibility.xlSheetHidden;
+            return roomCourseMap;
         }
 
-        private void printHeaders(Excel.Worksheet worksheet)
-        {
-            string[] headers = new string[] { "Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-
-            Range currentCell = worksheet.get_Range(TimeHeaderLocation);
-
-            for (int i = 0; i < headers.Length; i++)
-            {
-                currentCell.Value = headers[i];
-                currentCell = currentCell.Offset[0, 1];
-            }
-        }
-
-        private void printTimes(Excel.Worksheet worksheet)
-        {
-            Range timeHeader = worksheet.get_Range(TimeHeaderLocation);
-            Range timeLoc = timeHeader.Offset[1, 0];
-
-            TimeSpan currentTime = StartTime;
-
-            while (currentTime <= EndTime)
-            {
-                timeLoc.Borders.Weight = XlBorderWeight.xlThin;
-                timeLoc.Value = String.Format("{0}{1:D2}", currentTime.Hours, currentTime.Minutes);
-                timeLoc = timeLoc.Offset[2, 0];
-                currentTime = currentTime.Add(TimeInterval);
-            }
-        }
-
-        private void PrintCourses(Spire.Xls.Worksheet worksheet, List<Course> courses)
+        private void PrintCourses(ISheet sheet, List<Course> courses)
         {
             foreach (Course course in courses)
             {
@@ -137,14 +136,28 @@ namespace ClassroomAssignment.Model.Visual
                     int startRow = GetRowForTime(course.StartTime.Value);
                     int endRow = GetRowForTime(course.EndTime.Value);
 
-                    Spire.Xls.CellRange startCell = worksheet.Range[startRow, column, endRow, column];
-                    startCell.Merge();
-                    startCell.Value = course.Course_Label + "\n" + course.Instructor + "\n" + course.MeetingPattern;
-                    worksheet.AutoFitColumn(column);
-                    worksheet.Columns[column].VerticalAlignment = Spire.Xls.VerticalAlignType.Center;
+                    
+                    //Get cell
+                    var row = sheet.GetRow(startRow);
+                    var cell = row.GetCell(column);
+
+                    // Style cell
+                    cell.CellStyle = ClassScheduleTemplate.GetCellStyle(Workbook, course.Color());
+
+                    var cellValue = getCourseLabel(course);
+                    cell.SetCellValue(cellValue);
+
+                    CellRangeAddress cellRange = new CellRangeAddress(startRow, endRow, column, column);
+                    var regionIndex = sheet.AddMergedRegion(cellRange);
+                    sheet.AutoSizeColumn(column, true);
                 }
             }
 
+        }
+
+        private string getCourseLabel(Course course)
+        {
+            return course.Course_Label + Environment.NewLine + course.Instructor + Environment.NewLine + course.MeetingPattern;
         }
 
         private int GetRowForTime(TimeSpan time)

@@ -107,7 +107,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ScheduleVisualizationTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ExcelDataReaderTests.cs" />
+    <Compile Include="NpoiTests.cs" />
     <Compile Include="UnitTest2.cs" />
     <Compile Include="CVSHelperTests.cs" />
     <Compile Include="UtilsTests.cs" />

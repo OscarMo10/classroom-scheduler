@@ -18,6 +18,8 @@ using ClassroomAssignment.Model;
 using System.Text.RegularExpressions;
 using ClassroomAssignment.Model.Utils;
 using ClassroomAssignment.Utils;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ClassroomAssignment
 {
@@ -32,20 +34,6 @@ namespace ClassroomAssignment
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
-
-
-
-
-
-            // InMemoryCourseRepository courseRepo = InMemoryCourseRepository.getInstance();
-
-
-
-
-
-
-            //ScheduleVisualization sv = new ScheduleVisualization(new HardCodedCourseRepo(), null, new ExcelSchedulePrinter());
-            //sv.PrintSchedule();
 
 
             myUserControl1 = new View.Home();
@@ -79,19 +67,6 @@ namespace ClassroomAssignment
 
         public void StartProject()
         {
-            //this.Application.ScreenUpdating = false;
-            //Excel.Workbook w = this.Application.ActiveWorkbook;
-            //this.Application.ActiveWindow.Visible = false;
-
-            //w.Sheets.Add(Type: "data1.csv");
-            //w.Sheets.Add(Type: "data2.csv");
-            //Application.ScreenUpdating = true;
-            //this.Application.ActiveWindow.Visible = true;
-            //w.Activate();
-
-            //this.Application.ScreenUpdating = true;
-
-
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             var result = folderBrowser.ShowDialog();
 
@@ -99,8 +74,24 @@ namespace ClassroomAssignment
             {
                 var pathToDocs = folderBrowser.SelectedPath;
                 string[] docLocations = Directory.GetFiles(pathToDocs);
-                DepartmentSheetCompiler.CompileFiles(docLocations);
+                //DepartmentSheetCompiler.CompileFiles(docLocations);
             }
+
+            FileStream f = File.OpenRead("ClassroomGridTemplate.xls");
+            IWorkbook workbook = new HSSFWorkbook(f);
+            workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
+            f.Close();
+            ExcelSchedulePrinter e = new ExcelSchedulePrinter();
+            e.Workbook = workbook;
+
+            new ScheduleVisualization(new HardCodedCourseRepo(), null, e).PrintSchedule();
+
+            using (var fileStream = File.Create("test.xls"))
+            {
+                workbook.Write(fileStream);
+            }
+
+            workbook.Close();
         }
 
 
@@ -152,7 +143,7 @@ namespace ClassroomAssignment
             // get meeting pattern
             cell = cell.Offset[0, 3];
             course.MeetingPattern = cell.Text;
-            match = Regex.Match(course.MeetingPattern, DepartmentSpreadSheet.MeetingPatternOptions.TIME_PATTERN);
+            match = Regex.Match(course.MeetingPattern, DataConstants.MeetingPatternOptions.TIME_PATTERN);
             if (match.Success)
             {
                 Group daysOfWeekGroup = match.Groups["daysOfWeek"];
@@ -165,24 +156,24 @@ namespace ClassroomAssignment
                     {
                         if (day[1] == 'H')
                         {
-                            course.MeetingDays.Add(DateUtil.ShortNameToDayOfWeek("TH"));
+                            course.MeetingDays.Add(Model.Utils.DateUtil.ShortNameToDayOfWeek("TH"));
                             day = day.Remove(0, 2);
                         }
                         else
                         {
-                            course.MeetingDays.Add(DateUtil.ShortNameToDayOfWeek("T"));
+                            course.MeetingDays.Add(Model.Utils.DateUtil.ShortNameToDayOfWeek("T"));
                             day = day.Remove(0, 1);
                         }
                     }
                     else
                     {
-                        course.MeetingDays.Add(DateUtil.ShortNameToDayOfWeek(day[0].ToString()));
+                        course.MeetingDays.Add(Model.Utils.DateUtil.ShortNameToDayOfWeek(day[0].ToString()));
                         day = day.Remove(0, 1);
                     }
                     
                 }
 
-                if (day.Length != 0) course.MeetingDays.Add(DateUtil.ShortNameToDayOfWeek(day));
+                if (day.Length != 0) course.MeetingDays.Add(Model.Utils.DateUtil.ShortNameToDayOfWeek(day));
 
 
                 int hrs = int.Parse(match.Groups["startTimeHr"].Value);

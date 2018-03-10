@@ -211,7 +211,9 @@
   -->
   <ItemGroup>
     <Compile Include="DepartmentSheetCompiler.cs" />
+    <Compile Include="Model\ClassScheduleTemplate.cs" />
     <Compile Include="Model\CourseClassMap.cs" />
+    <Compile Include="Utils\NpoiUtil.cs" />
     <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -227,7 +229,7 @@
     <Compile Include="Repo\HardCodedCourseRepo.cs" />
     <Compile Include="Repo\InMemoryRoomRepository.cs" />
     <Compile Include="Model\Course.cs" />
-    <Compile Include="Model\DepartmentSheet.cs" />
+    <Compile Include="Model\DataConstants.cs" />
     <Compile Include="Repo\ICourseRepository.cs" />
     <Compile Include="Repo\InMemoryCourseRepository.cs" />
     <Compile Include="Repo\IRoomRepository.cs" />
@@ -292,9 +294,9 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="ClassroomGrid.xlsx">
+    <EmbeddedResource Include="ClassroomGrid.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>

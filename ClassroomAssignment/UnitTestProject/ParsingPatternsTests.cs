@@ -12,7 +12,7 @@ namespace UnitTestProject
         [TestInitialize]
         public void Initialize()
         {
-            MeetingTimeMatch = Regex.Match("MT 5:30pm-8:10pm", DepartmentSpreadSheet.MeetingPatternOptions.TIME_PATTERN);
+            MeetingTimeMatch = Regex.Match("MT 5:30pm-8:10pm", DataConstants.MeetingPatternOptions.TIME_PATTERN);
         }
 
         [TestMethod]
