@@ -109,6 +109,7 @@
     <Compile Include="ScheduleVisualizationTests.cs" />
     <Compile Include="ExcelDataReaderTests.cs" />
     <Compile Include="NpoiTests.cs" />
+    <Compile Include="SheetParserTests.cs" />
     <Compile Include="UnitTest2.cs" />
     <Compile Include="CVSHelperTests.cs" />
     <Compile Include="UtilsTests.cs" />
@@ -120,6 +121,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="testData\BMI Fall 18 draft 2-8-18.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testData\ITIN Fall 18 draft 2-8-18.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassroomAssignment\ClassroomAssignment.csproj">

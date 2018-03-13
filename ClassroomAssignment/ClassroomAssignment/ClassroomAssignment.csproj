@@ -213,6 +213,7 @@
     <Compile Include="DepartmentSheetCompiler.cs" />
     <Compile Include="Model\ClassScheduleTemplate.cs" />
     <Compile Include="Model\CourseClassMap.cs" />
+    <Compile Include="Model\SheetParser.cs" />
     <Compile Include="Utils\NpoiUtil.cs" />
     <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>

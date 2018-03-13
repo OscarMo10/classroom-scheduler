@@ -23,6 +23,14 @@ namespace ClassroomAssignment.Model
             Map(m => m.Section_Type).Index(9);
             Map(m => m.Topic).Index(10);
             Map(m => m.MeetingPattern).Index(11);
+
+            Map(m => m.NeedsRoom).Ignore();
+            Map(m => m.Meets).Ignore();
+            Map(m => m.AlreadyAssignedRoom).Ignore();
+            Map(m => m.RoomAssignment).Ignore();
+            Map(m => m.MeetingDays).Ignore();
+            Map(m => m.StartTime).Ignore();
+            Map(m => m.EndTime).Ignore();
         }
     }
 }

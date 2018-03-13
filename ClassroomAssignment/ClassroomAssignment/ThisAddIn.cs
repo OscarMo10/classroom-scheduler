@@ -75,7 +75,6 @@ namespace ClassroomAssignment
             {
                 var pathToDocs = folderBrowser.SelectedPath;
                 string[] docLocations = Directory.GetFiles(pathToDocs);
-                //DepartmentSheetCompiler.CompileFiles(docLocations);
             }
 
             var f = Assembly.GetExecutingAssembly().GetManifestResourceStream("ClassroomAssignment.ClassroomGridTemplate.xls");

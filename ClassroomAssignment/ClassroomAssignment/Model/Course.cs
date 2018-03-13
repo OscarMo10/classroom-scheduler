@@ -13,14 +13,14 @@ namespace ClassroomAssignment.Model
         public string SIS_ID { get; set; }
         public String Term { get; set; } 
         public string TermCode { get; set; }
-        public String DepartmentCode { get; set; }
-        public String SubjectCode { get; set; }
+        public string DepartmentCode { get; set; }
+        public string SubjectCode { get; set; }
         public string CatalogNumber { get; set; }
-        public String Course_Label { get; set; }
+        public string Course_Label { get; set; }
         public string Section_Number { get; set; }
-        public String Section_Type { get; set; }
-        public String Topic { get; set; }
-        public String MeetingPattern { get; set;}
+        public string Section_Type { get; set; }
+        public string Topic { get; set; }
+        public string MeetingPattern { get; set;}
         public String Instructor { get; set; }
         public String Room { get; set; }
         public String Status { get; set; }
