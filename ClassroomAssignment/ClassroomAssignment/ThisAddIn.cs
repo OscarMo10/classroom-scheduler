@@ -20,6 +20,7 @@ using ClassroomAssignment.Model.Utils;
 using ClassroomAssignment.Utils;
 using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
+using System.Reflection;
 
 namespace ClassroomAssignment
 {
@@ -77,7 +78,7 @@ namespace ClassroomAssignment
                 //DepartmentSheetCompiler.CompileFiles(docLocations);
             }
 
-            FileStream f = File.OpenRead("ClassroomGridTemplate.xls");
+            var f = Assembly.GetExecutingAssembly().GetManifestResourceStream("ClassroomAssignment.ClassroomGridTemplate.xls");
             IWorkbook workbook = new HSSFWorkbook(f);
             workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
             f.Close();

@@ -270,6 +270,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="ClassroomAssignment_TemporaryKey.pfx" />
+    <EmbeddedResource Include="ClassroomGridTemplate.xls" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -294,9 +295,6 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="ClassroomGrid.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
