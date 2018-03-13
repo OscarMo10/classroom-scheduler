@@ -13,7 +13,6 @@ namespace ClassroomAssignment.Model.Repo
         private static void initInstance()
         {
             instance = new InMemoryRoomRepository();
-           
         }
 
         public static InMemoryRoomRepository getInstance()
