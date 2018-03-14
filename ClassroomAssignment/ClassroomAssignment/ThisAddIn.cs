@@ -138,7 +138,7 @@ namespace ClassroomAssignment
 
             // get course title
             cell = cell.Offset[0, 9];
-            course.Course_Label = cell.Text;
+            course.Course_Title = cell.Text;
 
             // get meeting pattern
             cell = cell.Offset[0, 3];

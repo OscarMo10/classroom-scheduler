@@ -16,10 +16,11 @@ namespace ClassroomAssignment.Model
         public string DepartmentCode { get; set; }
         public string SubjectCode { get; set; }
         public string CatalogNumber { get; set; }
-        public string Course_Label { get; set; }
+        public string CourseName { get; set; }     // Course
         public string Section_Number { get; set; }
+        public string Course_Title { get; set; }
         public string Section_Type { get; set; }
-        public string Topic { get; set; }
+        public string Topic { get; set; }  // "Title/Topic"
         public string MeetingPattern { get; set;}
         public String Instructor { get; set; }
         public String Room { get; set; }
@@ -27,8 +28,8 @@ namespace ClassroomAssignment.Model
         public String Session { get; set; }
         public String Campus { get; set; }
         public String InstructionMethod { get; set; }
-        public String stringegerPartner { get; set; }
-        public String SchedulePrstring { get; set; }
+        public String IntegerPartner { get; set; }
+        public String Schedule { get; set; }
         public String Consent { get; set; }
         public string CreditHrsMin { get; set; }
         public string CreditHrs { get; set; }
@@ -38,6 +39,7 @@ namespace ClassroomAssignment.Model
         public string Enrollment { get; set; }
         public string MaximumEnrollment { get; set; }
         public string PriorEnrollment { get; set; }
+        public string ProjectedEnrollment { get; set; }
         public string WaitCap { get; set; }
         public string RoomCapRequest { get; set; }
         public String CrossListings { get; set; }

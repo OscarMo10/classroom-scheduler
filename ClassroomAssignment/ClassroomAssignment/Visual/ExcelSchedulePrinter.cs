@@ -157,7 +157,7 @@ namespace ClassroomAssignment.Model.Visual
 
         private string getCourseLabel(Course course)
         {
-            return course.Course_Label + Environment.NewLine + course.Instructor + Environment.NewLine + course.MeetingPattern;
+            return course.Course_Title + Environment.NewLine + course.Instructor + Environment.NewLine + course.MeetingPattern;
         }
 
         private int GetRowForTime(TimeSpan time)

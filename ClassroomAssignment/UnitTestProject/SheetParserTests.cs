@@ -14,10 +14,10 @@ namespace UnitTestProject
     [TestClass]
     public class SheetParserTests
     {
-        const int NUMBER_OF_PARSED_COURSES = 22;
+        const int NUMBER_OF_PARSED_COURSES = 21;
 
         [TestMethod]
-        public void NumberOfCoursesParsedIsCorrect()
+        public void TestNumberOfCoursesParsed()
         {
             var debugLocation = Assembly.GetExecutingAssembly().Location;
             var debugFolder = Path.GetDirectoryName(debugLocation);
@@ -26,7 +26,7 @@ namespace UnitTestProject
 
             List<Course> courses = SheetParser.Parse(files);
             int actualCount = courses.Count;
-            Assert.AreEqual<int>(0, actualCount);
+            Assert.AreEqual<int>(NUMBER_OF_PARSED_COURSES, actualCount, "Number of courses output by Parser is incorrect");
         }
     }
 }
