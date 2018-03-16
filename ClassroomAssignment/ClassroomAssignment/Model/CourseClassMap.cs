@@ -35,6 +35,7 @@ namespace ClassroomAssignment.Model
             Map(m => m.IntegerPartner).Index(i++);
             Map(m => m.Schedule).Index(i++);
             Map(m => m.Consent).Index(i++);
+            Map(m => m.CreditHrsMin).Index(i++);
             Map(m => m.CreditHrs).Index(i++);
             Map(m => m.GradeMode).Index(i++);
             Map(m => m.Attributes).Index(i++);

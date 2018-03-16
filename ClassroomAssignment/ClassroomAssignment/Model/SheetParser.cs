@@ -44,14 +44,14 @@ namespace ClassroomAssignment.Model
                 csvReader.Read(); // read first header
                 while(!finished)
                 {
-                    coursesForFile.AddRange(parseCourseRecords(csvReader));
+                    coursesForFile.AddRange(parseRecordsForCourse(csvReader));
                 }
             }
 
             return coursesForFile;
         }
 
-        private static List<Course> parseCourseRecords(CsvHelper.CsvReader reader)
+        private static List<Course> parseRecordsForCourse(CsvHelper.CsvReader reader)
         {
 
             // make sure not at header or end of file
@@ -82,7 +82,5 @@ namespace ClassroomAssignment.Model
             }
 
         }
-
-      
     }
 }

@@ -22,8 +22,28 @@ namespace ClassroomAssignment.Model
         public string Section_Type { get; set; }
         public string Topic { get; set; }  // "Title/Topic"
         public string MeetingPattern { get; set;}
-        public String Instructor { get; set; }
-        public String Room { get; set; }
+        public string Instructor { get; set; }
+
+        private string _room;
+        public string Room
+        {
+            get { return _room; }
+
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    AlreadyAssignedRoom = true;
+                }
+                else
+                {
+                    AlreadyAssignedRoom = false;
+                }
+
+                _room = value;
+            }
+        }
+
         public String Status { get; set; }
         public String Session { get; set; }
         public String Campus { get; set; }
