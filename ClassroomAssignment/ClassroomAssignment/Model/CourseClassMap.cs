@@ -52,7 +52,6 @@ namespace ClassroomAssignment.Model
             Map(m => m.Notes).Index(i++);
 
             Map(m => m.NeedsRoom).Ignore();
-            Map(m => m.Meets).Ignore();
             Map(m => m.AlreadyAssignedRoom).Ignore();
             Map(m => m.RoomAssignment).Ignore();
             Map(m => m.MeetingDays).Ignore();

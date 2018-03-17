@@ -38,7 +38,6 @@ namespace UnitTestProject
             testCourse.InstructionMethod = "In Person";
             testCourse.Comments = "PKI 153";
             testCourse.Notes = "PKI 157";
-            testCourse.NeedsRoom = true;
             testCourse.AlreadyAssignedRoom = true;
 
             // This is the "normalized" name for the room

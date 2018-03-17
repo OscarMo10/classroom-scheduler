@@ -11,7 +11,7 @@ namespace ClassroomAssignment.Model
     public sealed class SheetParser
     {
         const int LAST_ROW_OF_HEADER = 3;
-        static bool finished = false;
+        static bool fileHasMoreRecords = true;
      
 
         public static List<Course> Parse(string[] filePaths)
@@ -20,7 +20,7 @@ namespace ClassroomAssignment.Model
             
             foreach (string file in filePaths)
             {
-                finished = false;
+                fileHasMoreRecords = true;
                 var coursesFromFile = parseFile(file);
                 courses.AddRange(coursesFromFile);
             }
@@ -42,7 +42,7 @@ namespace ClassroomAssignment.Model
 
                 skipHeaders(csvReader);
                 csvReader.Read(); // read first header
-                while(!finished)
+                while(fileHasMoreRecords)
                 {
                     coursesForFile.AddRange(parseRecordsForCourse(csvReader));
                 }
@@ -57,7 +57,7 @@ namespace ClassroomAssignment.Model
             // make sure not at header or end of file
             List<Course> courseList = new List<Course>();
 
-            while(!(finished = !reader.Read()) && !reachedEndOfRecords(reader))
+            while((fileHasMoreRecords = reader.Read()) && courseHasMoreRecords(reader))
             {
                 Course course = reader.GetRecord<Course>();
                 courseList.Add(course);
@@ -66,12 +66,12 @@ namespace ClassroomAssignment.Model
             return courseList;
         }
 
-        static bool reachedEndOfRecords(CsvHelper.CsvReader reader)
+        static bool courseHasMoreRecords(CsvHelper.CsvReader reader)
         {
             string courseHeader = reader.GetField(0);
             string firstFieldOfRecord = reader.GetField(1);
-            bool endOfRecords = !string.IsNullOrEmpty(courseHeader) || string.IsNullOrEmpty(firstFieldOfRecord);
-            return endOfRecords;
+            bool hasRecordsLeft = string.IsNullOrEmpty(courseHeader) && !string.IsNullOrEmpty(firstFieldOfRecord);
+            return hasRecordsLeft;
         }
 
         static void skipHeaders(CsvHelper.CsvReader reader)

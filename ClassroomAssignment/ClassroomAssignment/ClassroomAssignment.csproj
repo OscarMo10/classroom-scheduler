@@ -215,6 +215,7 @@
     <Compile Include="Model\CourseClassMap.cs" />
     <Compile Include="Model\SheetParser.cs" />
     <Compile Include="Utils\NpoiUtil.cs" />
+    <Compile Include="Utils\TimeUtil.cs" />
     <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -270,8 +271,8 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="ClassroomAssignment_TemporaryKey.pfx" />
     <EmbeddedResource Include="ClassroomGridTemplate.xls" />
+    <None Include="ClassroomAssignment_TemporaryKey.pfx" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -324,7 +325,7 @@
     <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>716DC74333710445D5BFEC2BC6665E7BDBE8A1F6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

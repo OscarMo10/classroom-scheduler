@@ -35,7 +35,7 @@ namespace ClassroomAssignment.Model.Utils
             }
         }
 
-        public static DayOfWeek ShortNameToDayOfWeek(string dayAbbreviation)
+        public static DayOfWeek AbbreviationToDayOfWeek(string dayAbbreviation)
         {
             return DayNameMatcher[dayAbbreviation];
         }

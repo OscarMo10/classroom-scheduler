@@ -37,7 +37,6 @@ namespace ClassroomAssignment.Repo
             testCourse.InstructionMethod = "In Person";
             testCourse.Comments = "PKI 153";
             testCourse.Notes = "PKI 157";
-            testCourse.NeedsRoom = true;
             testCourse.AlreadyAssignedRoom = true;
             testCourse.StartTime = new TimeSpan(13, 30, 0);
             testCourse.EndTime = new TimeSpan(14, 45, 0);
