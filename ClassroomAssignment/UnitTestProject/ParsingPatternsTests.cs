@@ -25,8 +25,11 @@ namespace UnitTestProject
         public void Test_PatternGroupsMatch()
         {
             // days of week
-            var startTime = MeetingTimeMatch.Groups[7].Value;
-            Assert.AreEqual<string>("5:30pm-8:10pm", startTime);
+            var startTime = MeetingTimeMatch.Groups[2].Value;
+            Assert.AreEqual<string>("5:30pm", startTime);
+
+            var endTime = MeetingTimeMatch.Groups[3].Value;
+            Assert.AreEqual<string>("8:10pm", endTime);
         }
     }
 }

@@ -8,7 +8,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using System.Windows.Forms;
-using Spire.Xls;
 using System.IO;
 using System.Diagnostics;
 using ClassroomAssignment.Model.Visual;

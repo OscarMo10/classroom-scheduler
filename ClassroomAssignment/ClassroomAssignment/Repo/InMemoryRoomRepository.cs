@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Model.Repo
 {
-    class InMemoryRoomRepository : IRoomRepository
+    public class InMemoryRoomRepository : IRoomRepository
     {
         private static InMemoryRoomRepository instance;
 
-        private static void initInstance()
+        public static void initInstance()
         {
+            if (instance != null) throw new InvalidOperationException("Room Repo already initialized");
             instance = new InMemoryRoomRepository();
         }
 
         public static InMemoryRoomRepository getInstance()
         {
+            if (instance == null) throw new InvalidOperationException("Room Repo not yet intialized");
             return instance;
         }        
 
         public string getNormalizedRoomName(string roomName)
         {
-            throw new NotImplementedException();
+            // TODO: Placeholder implementation
+            return roomName.Replace("Peter Kiewit Institute", "PKI");
         }
     }
 }

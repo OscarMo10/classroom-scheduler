@@ -40,7 +40,9 @@ namespace ClassroomAssignment.Model
         {
             public const string GENERAL_ASSIGNMENT_ROOM = "General Assignment Room";
             public const string NO_ROOM_NEEDED = "NO Room Needed";
+            public const string ROOM_ASSIGNMENT_PENDING = "Room Assignment Pending";
             public const string PETER_KEIWIT_INSTITUTE_REGEX = @"Peter Keiwit Institute \d+";
+            public const string PKI_REGEX = @"PKI (\d+)";
         }
 
         public class SectionTypeOptions
@@ -52,8 +54,13 @@ namespace ClassroomAssignment.Model
 
         public class MeetingPatternOptions
         {
-            public const string TIME_PATTERN = @"(M|T|W|TH|F)+ (\d{1,2}:\d{1,2}am|pm)-(\d{1,2}:\d{1,2}am|pm)";
+            public const string TIME_PATTERN = @"(M|T|W|TH|F)+ (\d{1,2}:\d{1,2}(?:am|pm))-(\d{1,2}:\d{1,2}(?:am|pm))";
             public const string DOES_NOT_MEET = "Does Not Meet";
+        }
+
+        public class InstructionMethods
+        {
+            public const string OFF_CAMPUS = "Off Campus";
         }
     }
 }

@@ -106,12 +106,6 @@
     <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.7.0.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExcelDataReader.3.4.0\lib\net45\ExcelDataReader.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDataReader.DataSet, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExcelDataReader.DataSet.3.4.0\lib\net45\ExcelDataReader.DataSet.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -133,18 +127,8 @@
     <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Common, Version=1.2.782.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.License, Version=1.3.6.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.License.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf, Version=4.2.2.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.XLS, Version=8.0.0.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.8.0\lib\net40\Spire.XLS.dll</HintPath>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -158,11 +142,15 @@
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -216,6 +204,12 @@
     <Compile Include="Model\SheetParser.cs" />
     <Compile Include="Utils\NpoiUtil.cs" />
     <Compile Include="Utils\TimeUtil.cs" />
+    <Compile Include="View\AmbiguityResolverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AmbiguityResolverForm.Designer.cs">
+      <DependentUpon>AmbiguityResolverForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -243,6 +237,9 @@
     <Compile Include="View\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Visual\ExcelSchedulePrinter.cs" />
     <Compile Include="Visual\ISchedulePrinter.cs" />
     <Compile Include="Visual\ScheduleVisualization.cs" />
@@ -250,6 +247,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="View\AmbiguityResolverForm.resx">
+      <DependentUpon>AmbiguityResolverForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ManageTaskPaneRibbon.resx">
       <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +314,12 @@
   <ItemGroup>
     <Folder Include="Template\" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -325,7 +331,7 @@
     <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>716DC74333710445D5BFEC2BC6665E7BDBE8A1F6</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

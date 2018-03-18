@@ -41,11 +41,5 @@ namespace UnitTestProject
             dest.Close();
         }
 
-        [TestMethod]
-        public void Test2()
-        {
-            Dictionary<int, string> d = new Dictionary<int, string>();
-            d[2] = "hello";
-        }
     }
 }

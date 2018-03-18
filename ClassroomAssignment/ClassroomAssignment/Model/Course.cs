@@ -1,10 +1,12 @@
 ﻿using ClassroomAssignment.Model.Utils;
+using ClassroomAssignment.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static ClassroomAssignment.Model.DataConstants;
 
 namespace ClassroomAssignment.Model
 {
@@ -36,7 +38,7 @@ namespace ClassroomAssignment.Model
 
                 if (match.Success)
                 {
-                    var daysCapture = match.Groups[2].Captures;
+                    var daysCapture = match.Groups[1].Captures;
                     MeetingDays = new List<DayOfWeek>();
                     foreach(Capture c in daysCapture)
                     {
@@ -44,37 +46,20 @@ namespace ClassroomAssignment.Model
                         MeetingDays.Add(day);
                     }
 
-                    var startHr = match.Groups[3].Value;
-                    var startMin = match.Groups[4].Value;
-                    var startAmPm = match.Groups[5].Value;
-
-                    
+                    var startTimeStr = match.Groups[2].Value;
+                    StartTime = TimeUtil.StringToTimeSpan(startTimeStr);
+                    var endTimeStr = match.Groups[3].Value;
+                    EndTime = TimeUtil.StringToTimeSpan(endTimeStr);
                 }
+
+                _meetingPattern = value;
             }
         
         }
 
         public string Instructor { get; set; }
 
-        private string _room;
-        public string Room
-        {
-            get { return _room; }
-
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    AlreadyAssignedRoom = true;
-                }
-                else
-                {
-                    AlreadyAssignedRoom = false;
-                }
-
-                _room = value;
-            }
-        }
+        public string Room { get; set; }
 
         public String Status { get; set; }
         public String Session { get; set; }
@@ -100,6 +85,7 @@ namespace ClassroomAssignment.Model
         public String Notes { get; set; }
 
         // Derived information
+        public bool AmbiguousAssignment { get; set; }
 
         private bool? _needsRoom;
         public bool NeedsRoom
@@ -108,20 +94,31 @@ namespace ClassroomAssignment.Model
             {
                 if (_needsRoom.HasValue) return _needsRoom.Value;
 
+                if (InstructionMethod.Equals(InstructionMethods.OFF_CAMPUS))
+                {
+                    _needsRoom = false;
+                    return _needsRoom.Value;
+                }
+
                 switch (Room)
                 {
-                    case DataConstants.RoomOptions.GENERAL_ASSIGNMENT_ROOM:
+                    case RoomOptions.GENERAL_ASSIGNMENT_ROOM:
                         _needsRoom = true;
                         break;
-
-                    case DataConstants.RoomOptions.NO_ROOM_NEEDED:
+                    case RoomOptions.ROOM_ASSIGNMENT_PENDING:
+                        _needsRoom = true;
+                        break;
+                    case RoomOptions.NO_ROOM_NEEDED:
                         _needsRoom = false;
                         break;
                 }
 
-                Regex r = new Regex(DataConstants.RoomOptions.PETER_KEIWIT_INSTITUTE_REGEX);
-                Match m = r.Match(Room);
-                if (!_needsRoom.HasValue && m.Success)
+                if (_needsRoom.HasValue) return _needsRoom.Value;
+
+                Regex pkiLongName = new Regex(RoomOptions.PETER_KEIWIT_INSTITUTE_REGEX);
+                
+                Match m = pkiLongName.Match(Room);
+                if (m.Success)
                 {
                     _needsRoom = true;
                 }

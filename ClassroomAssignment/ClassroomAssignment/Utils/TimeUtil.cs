@@ -18,7 +18,7 @@ namespace ClassroomAssignment.Utils
 
             if (!match.Success)
             {
-                throw new ArgumentException("Invalid time string argument provided.");
+                throw new FormatException("Invalid time string argument provided.");
             }
 
             string hrString = match.Groups[1].Value;
@@ -42,16 +42,16 @@ namespace ClassroomAssignment.Utils
 
         private static int militaryHr(string timeStr, bool pm)
         {
-            if (pm && timeStr.Equals("12"))
+            if (timeStr.Equals("12"))
             {
-                return 13;
+                return pm ? 12 : 0;
             }
-            if (!pm && timeStr.Equals("12"))
+            else
             {
-                return 0;
+                int hr = int.Parse(timeStr);
+
+                return pm ? hr + 12 : hr;
             }
-            
-            return int.Parse(timeStr);
         }
     }
 }
