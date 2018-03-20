@@ -8,7 +8,6 @@ namespace ClassroomAssignment.Model.Repo
 {
     public interface ICourseRepository
     {
-        string Term { get; }
         List<Course> Courses { get; }
     }
 }

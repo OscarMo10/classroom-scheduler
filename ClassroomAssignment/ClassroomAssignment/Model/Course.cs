@@ -94,7 +94,7 @@ namespace ClassroomAssignment.Model
             {
                 if (_needsRoom.HasValue) return _needsRoom.Value;
 
-                if (InstructionMethod.Equals(InstructionMethods.OFF_CAMPUS))
+                if (InstructionMethod != null && InstructionMethod.Equals(InstructionMethods.OFF_CAMPUS))
                 {
                     _needsRoom = false;
                     return _needsRoom.Value;
@@ -128,6 +128,11 @@ namespace ClassroomAssignment.Model
                 }
 
                 return _needsRoom.Value;
+            }
+
+            set
+            {
+                _needsRoom = value;
             }
         }
 

@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using ClassroomAssignment.Repo;
 
 namespace ClassroomAssignment.View
 {
-    public partial class Home : UserControl
+    public partial class Home : System.Windows.Forms.UserControl
     {
         public Home()
         {
@@ -28,6 +30,12 @@ namespace ClassroomAssignment.View
             Globals.ThisAddIn.StartProject();
 
 
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            DataGridView gridView = Controls["dataGridView1"] as DataGridView;
+            gridView.DataSource = new HardCodedCourseRepo().Courses;
         }
     }
 }

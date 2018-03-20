@@ -47,7 +47,6 @@ namespace UnitTestProject
             Courses = new List<Course>();
             Courses.Add(testCourse);
             CourseRepoMock.Setup(x => x.Courses).Returns(Courses);
-            CourseRepoMock.Setup(x => x.Term).Returns(Term);
         }
 
         [TestMethod]

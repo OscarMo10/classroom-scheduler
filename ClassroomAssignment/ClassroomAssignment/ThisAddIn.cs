@@ -20,6 +20,7 @@ using ClassroomAssignment.Utils;
 using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
 using System.Reflection;
+using ClassroomAssignment.View;
 
 namespace ClassroomAssignment
 {
@@ -70,28 +71,39 @@ namespace ClassroomAssignment
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             var result = folderBrowser.ShowDialog();
 
+            string[] docLocations;
             if (result == DialogResult.OK)
             {
                 var pathToDocs = folderBrowser.SelectedPath;
-                string[] docLocations = Directory.GetFiles(pathToDocs);
+                docLocations = Directory.GetFiles(pathToDocs);
             }
-
-            var f = Assembly.GetExecutingAssembly().GetManifestResourceStream("ClassroomAssignment.ClassroomGridTemplate.xls");
-            IWorkbook workbook = new HSSFWorkbook(f);
-            workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
-            f.Close();
-            ExcelSchedulePrinter e = new ExcelSchedulePrinter();
-            e.Workbook = workbook;
-
-            new ScheduleVisualization(new HardCodedCourseRepo(), null, e).PrintSchedule();
-
-            using (var fileStream = File.Create("test.xls"))
+            else
             {
-                workbook.Write(fileStream);
+                return;
             }
 
-            workbook.Close();
+            List<Course> courses = SheetParser.Parse(docLocations, new InMemoryRoomRepository());
+            InMemoryCourseRepository.initInstance(courses);
+            new AmbiguityResolver().Show();
+
+            //    var f = Assembly.GetExecutingAssembly().GetManifestResourceStream("ClassroomAssignment.ClassroomGridTemplate.xls");
+            //    IWorkbook workbook = new HSSFWorkbook(f);
+            //    workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
+            //    f.Close();
+            //    ExcelSchedulePrinter e = new ExcelSchedulePrinter();
+            //    e.Workbook = workbook;
+
+            //    new ScheduleVisualization(new HardCodedCourseRepo(), null, e).PrintSchedule();
+
+            //    using (var fileStream = File.Create("test.xls"))
+            //    {
+            //        workbook.Write(fileStream);
+            //    }
+
+            //    workbook.Close();
         }
+
+
 
         #region VSTO generated code
 

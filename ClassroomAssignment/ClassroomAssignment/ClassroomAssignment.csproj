@@ -198,17 +198,16 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="DepartmentSheetCompiler.cs" />
     <Compile Include="Model\ClassScheduleTemplate.cs" />
     <Compile Include="Model\CourseClassMap.cs" />
     <Compile Include="Model\SheetParser.cs" />
     <Compile Include="Utils\NpoiUtil.cs" />
     <Compile Include="Utils\TimeUtil.cs" />
-    <Compile Include="View\AmbiguityResolverForm.cs">
+    <Compile Include="View\AmbiguityResolver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AmbiguityResolverForm.Designer.cs">
-      <DependentUpon>AmbiguityResolverForm.cs</DependentUpon>
+    <Compile Include="View\AmbiguityResolver.Designer.cs">
+      <DependentUpon>AmbiguityResolver.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ManageTaskPaneRibbon.cs">
       <SubType>Component</SubType>
@@ -237,9 +236,6 @@
     <Compile Include="View\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Visual\ExcelSchedulePrinter.cs" />
     <Compile Include="Visual\ISchedulePrinter.cs" />
     <Compile Include="Visual\ScheduleVisualization.cs" />
@@ -247,8 +243,8 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="View\AmbiguityResolverForm.resx">
-      <DependentUpon>AmbiguityResolverForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\AmbiguityResolver.resx">
+      <DependentUpon>AmbiguityResolver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ManageTaskPaneRibbon.resx">
       <DependentUpon>ManageTaskPaneRibbon.cs</DependentUpon>
@@ -277,6 +273,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClassroomAssignment.Model.Course.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -314,12 +311,6 @@
   <ItemGroup>
     <Folder Include="Template\" />
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="View\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -331,7 +322,7 @@
     <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>716DC74333710445D5BFEC2BC6665E7BDBE8A1F6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

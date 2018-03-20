@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace ClassroomAssignment.Repo
 {
-    class HardCodedCourseRepo : ICourseRepository
+    public class HardCodedCourseRepo : ICourseRepository
     {
-        public string Term { get; }
 
         public List<Course> Courses { get; }
 
         public HardCodedCourseRepo()
         {
-            Term = "Fall 2018";
             this.Courses = new List<Course>();
 
             Course testCourse = new Course();
