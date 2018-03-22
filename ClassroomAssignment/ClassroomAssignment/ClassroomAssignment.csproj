@@ -198,7 +198,6 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="DepartmentSheetCompiler.cs" />
     <Compile Include="Model\ClassScheduleTemplate.cs" />
     <Compile Include="Model\CourseClassMap.cs" />
     <Compile Include="Model\SheetParser.cs" />
