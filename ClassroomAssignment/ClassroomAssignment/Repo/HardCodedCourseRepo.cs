@@ -20,6 +20,7 @@ namespace ClassroomAssignment.Repo
             this.Courses = new List<Course>();
 
             Course testCourse = new Course();
+
             testCourse.ClassID = "239";
             testCourse.SIS_ID = "12615";
             testCourse.TermCode = "1188";
@@ -28,6 +29,7 @@ namespace ClassroomAssignment.Repo
             testCourse.CatalogNumber = "1000";
             testCourse.Course_Title = "BIOI 1000";
             testCourse.Section_Number = "1";
+
             testCourse.MeetingPattern = "MW 1:30pm-2:45pm";
             testCourse.Instructor = "Bastola, Dhundy";
             testCourse.Room = "General Assignment Room";
@@ -47,6 +49,7 @@ namespace ClassroomAssignment.Repo
 
             Courses.Add(testCourse);
 
+            
         }
     }
 }

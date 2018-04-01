@@ -25,36 +25,51 @@ namespace ClassroomAssignment
 {
     public partial class ThisAddIn
     {
+        //Home controls 
         private View.Home myUserControl1;
         Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
         private IEnumerable<string> DataSheetsName;
         Excel.Workbook ProjectWorkbook;
+
+        //Find Room user control vars
+        private FindRoomUserControl findRoomUserControl;
+        private Microsoft.Office.Tools.CustomTaskPane findRoomTPValue;
 
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             //this.Application.WorkbookBeforeSave += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
 
-
+            //Set up for Home Task Pane
             myUserControl1 = new View.Home();
             myCustomTaskPane = this.CustomTaskPanes.Add(myUserControl1, "My Task Pane");
             myCustomTaskPane.Visible = true;
+            myCustomTaskPane.VisibleChanged += new EventHandler(taskPaneValue_VisibleChanged);
 
-            myCustomTaskPane.VisibleChanged +=
-                new EventHandler(taskPaneValue_VisibleChanged);
+            //Set up for find Room Task pane
+            findRoomUserControl = new FindRoomUserControl();
+            findRoomTPValue = this.CustomTaskPanes.Add(findRoomUserControl, "Find Room");
+            findRoomTPValue.Visible = false;
+            findRoomTPValue.VisibleChanged += new EventHandler(roomTaskPaneValue_VisibleChanged);
 
-           
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
-            //Test comment erikson 2-17-18
+
         }
 
         private void taskPaneValue_VisibleChanged(object sender, System.EventArgs e)
         {
-            Globals.Ribbons.ManageTaskPaneRibbon.toggleButton1.Checked =
-                myCustomTaskPane.Visible;
+            Globals.Ribbons.ManageTaskPaneRibbon.toggleButton1.Checked = myCustomTaskPane.Visible;
+            
+        }
+
+        //Event handler for room Task pane value
+        private void roomTaskPaneValue_VisibleChanged(object sender, System.EventArgs e)
+        {
+            Globals.Ribbons.FindRoomTaskPaneRibbon.FindRoomTB.Checked = findRoomTPValue.Visible;
+
         }
 
         public Microsoft.Office.Tools.CustomTaskPane TaskPane
@@ -62,6 +77,14 @@ namespace ClassroomAssignment
             get
             {
                 return myCustomTaskPane;
+            }
+        }
+
+        public Microsoft.Office.Tools.CustomTaskPane TaskPane1
+        {
+            get
+            {
+                return findRoomTPValue;
             }
         }
 

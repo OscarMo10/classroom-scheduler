@@ -198,9 +198,23 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="FindRoomTaskPaneRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FindRoomTaskPaneRibbon.Designer.cs">
+      <DependentUpon>FindRoomTaskPaneRibbon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindRoomUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FindRoomUserControl.Designer.cs">
+      <DependentUpon>FindRoomUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\ClassScheduleTemplate.cs" />
     <Compile Include="Model\CourseClassMap.cs" />
+    <Compile Include="Model\Room.cs" />
     <Compile Include="Model\SheetParser.cs" />
+    <Compile Include="Repo\HardCodedRoomRepo.cs" />
     <Compile Include="Utils\NpoiUtil.cs" />
     <Compile Include="Utils\TimeUtil.cs" />
     <Compile Include="View\AmbiguityResolverForm.cs">
@@ -246,6 +260,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="FindRoomTaskPaneRibbon.resx">
+      <DependentUpon>FindRoomTaskPaneRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindRoomUserControl.resx">
+      <DependentUpon>FindRoomUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AmbiguityResolverForm.resx">
       <DependentUpon>AmbiguityResolverForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +291,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="ClassroomGridTemplate.xls" />
+    <None Include="ClassroomAssignment_6_TemporaryKey.pfx" />
     <None Include="ClassroomAssignment_TemporaryKey.pfx" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
@@ -327,10 +348,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ClassroomAssignment_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ClassroomAssignment_6_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FA5F2E81FBB8DECF30FA730AAEF933C90E4027EC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B9074FD3F8B74512C73833302C6E21B2001C166B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

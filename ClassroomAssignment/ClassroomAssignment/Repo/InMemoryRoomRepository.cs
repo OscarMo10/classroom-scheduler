@@ -10,10 +10,24 @@ namespace ClassroomAssignment.Model.Repo
     {
         private static InMemoryRoomRepository instance;
 
-        public static void initInstance()
+        private List<Room> myRooms;
+
+
+        public List<Room> Rooms
+        {
+            get { return myRooms; }
+            private set { myRooms = value; }
+        }
+        public InMemoryRoomRepository(List<Room> myRooms)
+        {
+
+            Rooms = myRooms;
+        }
+
+        public static void initInstance(List<Room> myRooms)
         {
             if (instance != null) throw new InvalidOperationException("Room Repo already initialized");
-            instance = new InMemoryRoomRepository();
+            instance = new InMemoryRoomRepository(myRooms);
         }
 
         public static InMemoryRoomRepository getInstance()
@@ -22,10 +36,12 @@ namespace ClassroomAssignment.Model.Repo
             return instance;
         }        
 
+       
         public string getNormalizedRoomName(string roomName)
         {
             // TODO: Placeholder implementation
             return roomName.Replace("Peter Kiewit Institute", "PKI");
         }
+        
     }
 }
